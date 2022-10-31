@@ -8,7 +8,7 @@
               <h3
                 class="text-center text-lg font-medium leading-6 text-gray-900"
               >
-                Thông tin nhân viên Booster
+                Tạo hợp đồng
               </h3>
             </div>
           </div>
@@ -17,7 +17,67 @@
               <div class="overflow-hidden shadow sm:rounded-md">
                 <div class="bg-white px-4 py-5 sm:p-6">
                   <div class="grid grid-cols-12 gap-6">
-                    <div class="col-span-12 sm:col-span-6">
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Mã số hợp đồng</label
+                      >
+                      <input
+                        type="text"
+                        name="contract_id"
+                        placeholder="Mã số hợp đồng"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Ngày viết hợp đồng</label
+                      >
+                      <input
+                        type="date"
+                        name="contract_date"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Ngày bắt đầu thử việc</label
+                      >
+                      <input
+                        type="date"
+                        name="start_date"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Ngày kết thúc thử việc</label
+                      >
+                      <input
+                        type="date"
+                        name="end_date"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div class="col-span-12 sm:col-span-1">
+                      <label
+                        for="vocative"
+                        class="block text-sm font-medium text-gray-700"
+                        >Xưng hô</label
+                      >
+                      <select
+                        type="text"
+                        name="vocative"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      >
+                        <option value="Ông">Ông</option>
+                        <option value="Bà">Bà</option>
+                      </select>
+                    </div>
+                    <div class="col-span-12 sm:col-span-5">
                       <label
                         for="full_name"
                         class="block text-sm font-medium text-gray-700"
@@ -44,7 +104,6 @@
 
                     <div class="col-span-6 sm:col-span-3">
                       <label
-                        for="full_name"
                         class="block text-sm font-medium text-gray-700"
                         >Tại</label
                       >
@@ -58,7 +117,6 @@
 
                     <div class="col-span-12">
                       <label
-                        for="street-address"
                         class="block text-sm font-medium text-gray-700"
                         >Địa chỉ thường trú</label
                       >
@@ -70,6 +128,46 @@
                       />
                     </div>
 
+                    <div class="col-span-12 sm:col-span-5">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chúc vụ (tiếng việt)</label
+                      >
+                      <input
+                        type="text"
+                        name="job_position"
+                        placeholder="Chức vụ"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-5">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chức vụ (tiếng anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="job_position_eng"
+                        placeholder="Job position"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-2">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Số giờ làm việc</label
+                      >
+                      <input
+                        type="text"
+                        name="working_hours"
+                        placeholder="Số giờ làm việc"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+
                     <div class="col-span-6 sm:col-span-6 lg:col-span-3">
                       <label class="block text-sm font-medium text-gray-700"
                         >CMND/Hộ chiếu số</label
@@ -78,7 +176,6 @@
                         type="text"
                         name="id_number"
                         placeholder="CMND/Hộ chiếu số"
-                        pattern="[0-9]"
                         title="Xin hãy nhập số ở đây"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -98,7 +195,6 @@
 
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
-                        for="region"
                         class="block text-sm font-medium text-gray-700"
                         >Tại</label
                       >
@@ -112,7 +208,6 @@
 
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
-                        for="postal-code"
                         class="block text-sm font-medium text-gray-700"
                         >Lương</label
                       >
@@ -120,14 +215,12 @@
                         type="text"
                         name="salary"
                         placeholder="Lương"
-                        pattern="[0-9]"
                         title="Xin hãy nhập số ở đây"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
-                        for="postal-code"
                         class="block text-sm font-medium text-gray-700"
                         >Template HD Thử Việc</label
                       >
@@ -139,7 +232,6 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
-                        for="postal-code"
                         class="block text-sm font-medium text-gray-700"
                         >Template NDA</label
                       >
@@ -151,7 +243,6 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
-                        for="postal-code"
                         class="block text-sm font-medium text-gray-700"
                         >Template HD chính thức</label
                       >
@@ -199,22 +290,51 @@ import { saveAs } from "file-saver";
 
 function getDataForm() {
   const form = document.getElementById("myForm");
-  var formData = new FormData(form);
-  return Object.fromEntries(formData);
+  let formData = new FormData(form);
+  formData = Object.fromEntries(formData);
+  // add additional english fields & standard value
+  // add filed contract_date_eng
+  formData.contract_date_eng = new Date(formData.contract_date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  formData.contract_date = new Date(formData.contract_date).toLocaleDateString("vi-VN", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  formData.dob = new Date(formData.dob).toLocaleDateString('en-gb');
+  formData.start_date = new Date(formData.start_date).toLocaleDateString('en-gb');
+  formData.end_date = new Date(formData.end_date).toLocaleDateString('en-gb');
+  formData.issued_on = new Date(formData.issued_on).toLocaleDateString('en-gb');
+
+  formData.contract_date = "Ngày " + formData.contract_date.replace(',', ' Năm').replace('t', 'T');
+  formData.vocative_eng = formData.vocative === 'Ông' ? 'Mr' : 'Ms';
+  formData.full_name_eng = removeAccents(formData.full_name);
+  formData.location_dob_eng = removeAccents(formData.location_dob);
+  formData.residential_address_eng = removeAccents(formData.residential_address);
+  formData.id_number_at_eng = removeAccents(formData.id_number_at);
+  formData.salary = new Intl.NumberFormat().format(parseInt(formData.salary));
+
+  return formData;
+}
+
+function removeAccents(str) {
+  return str.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd').replace(/Đ/g, 'D');
 }
 
 export default {
   name: "MainApp",
   methods: {
-    renderDoc() {
+    renderDoc(event) {
+      event.preventDefault();
       let dataForm = getDataForm();
-      dataForm.dob = new Date(
-        dataForm.dob.toLocaleDateString("en-gb", {
-          year: "numeric",
-          month: "long",
-          day: "2-digit",
-        })
-      );
+      console.log(dataForm);
       const docs = document.getElementById("doc1");
       const reader = new FileReader();
       if (docs.files.length === 0) {
