@@ -43,7 +43,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
-                        >Ngày bắt đầu thử việc</label
+                        >Ngày bắt đầu</label
                       >
                       <input
                         type="date"
@@ -54,7 +54,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
-                        >Ngày kết thúc thử việc</label
+                        >Ngày kết thúc</label
                       >
                       <input
                         type="date"
@@ -115,7 +115,7 @@
                       />
                     </div>
 
-                    <div class="col-span-12">
+                    <div class="col-span-9">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Địa chỉ thường trú</label
@@ -124,6 +124,19 @@
                         type="text"
                         name="residential_address"
                         placeholder="Địa chỉ thường trú"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div class="col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >SDT</label
+                      >
+                      <input
+                        type="text"
+                        name="tel"
+                        placeholder="Số điện thoại"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -144,7 +157,7 @@
                     <div class="col-span-12 sm:col-span-5">
                       <label
                         class="block text-sm font-medium text-gray-700"
-                        >Chức vụ (tiếng anh)</label
+                        >Chức vụ (Tiếng Anh)</label
                       >
                       <input
                         type="text"
@@ -163,6 +176,32 @@
                         type="text"
                         name="working_hours"
                         placeholder="Số giờ làm việc"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Loại hợp đồng lao động</label
+                      >
+                      <input
+                        type="text"
+                        name="labor_contract_type"
+                        placeholder="Loại Hợp đồng lao động"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Loại hợp đồng lao động (Tiếng Anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="labor_contract_type_eng"
+                        placeholder="Labor contract type"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -256,19 +295,19 @@
                 </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    @click="renderDoc"
+                    @click.stop.prevent="renderDoc('probation')"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     HĐ thử việc
                   </button>
                   <button
-                    @click="renderDoc"
+                    @click.stop.prevent="renderDoc('nda')"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     NDA
                   </button>
                   <button
-                    @click="renderDoc"
+                    @click.stop.prevent="renderDoc('fulltime')"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     HD chính thức
@@ -294,11 +333,11 @@ function getDataForm() {
   formData = Object.fromEntries(formData);
   // add additional english fields & standard value
   // add filed contract_date_eng
-  formData.contract_date_eng = new Date(formData.contract_date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  let contract_date_eng = new Date(formData.contract_date);
+  const date = ordinal(contract_date_eng.getDate());
+  const month_list = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const month = month_list[contract_date_eng.getMonth()];
+  formData.contract_date_eng = `${month} ${date}, ${contract_date_eng.getFullYear()}`;
 
   formData.contract_date = new Date(formData.contract_date).toLocaleDateString("vi-VN", {
     year: "numeric",
@@ -313,11 +352,13 @@ function getDataForm() {
 
   formData.contract_date = "Ngày " + formData.contract_date.replace(',', ' Năm').replace('t', 'T');
   formData.vocative_eng = formData.vocative === 'Ông' ? 'Mr' : 'Ms';
+  formData.sex = formData.vocative === 'Ông' ? 'Nam' : 'Nữ';
+  formData.sex_eng = formData.vocative === 'Ông' ? 'Male' : 'Female';
   formData.full_name_eng = removeAccents(formData.full_name);
   formData.location_dob_eng = removeAccents(formData.location_dob);
   formData.residential_address_eng = removeAccents(formData.residential_address);
   formData.id_number_at_eng = removeAccents(formData.id_number_at);
-  formData.salary = new Intl.NumberFormat().format(parseInt(formData.salary));
+  formData.salary = new Intl.NumberFormat().format(parseInt(formData.salary.replace(/,/, '').replace(/\./, '')));
 
   return formData;
 }
@@ -328,14 +369,34 @@ function removeAccents(str) {
             .replace(/đ/g, 'd').replace(/Đ/g, 'D');
 }
 
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n%100;
+  return n + (s[(v-20)%10] || s[v] || s[0]);
+}
+
 export default {
   name: "MainApp",
+  data() {
+    return {
+      count: 0,
+      id: 123
+    }
+  },
   methods: {
-    renderDoc(event) {
-      event.preventDefault();
+    renderDoc(contract_type) {
+      console.log(JSON.parse(JSON.stringify(this.$data)));
       let dataForm = getDataForm();
       console.log(dataForm);
-      const docs = document.getElementById("doc1");
+      let docs = null;
+      if (contract_type === 'probation') {
+        docs = document.getElementById("doc1");
+      } else if (contract_type === 'nda') {
+        docs = document.getElementById("doc2");
+      } else {
+        docs = document.getElementById("doc3");
+      }
+
       const reader = new FileReader();
       if (docs.files.length === 0) {
         alert("no selected files");
@@ -394,7 +455,13 @@ export default {
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         });
         // Output the document using Data-URI
-        saveAs(out, "output.docx");
+        if (contract_type === 'probation') {
+          saveAs(out, dataForm.full_name_eng + " - Probation Contract.docx");
+        } else if (contract_type === 'nda') {
+          saveAs(out, dataForm.full_name_eng + " - NDA.docx");
+        } else {
+          saveAs(out, dataForm.full_name_eng + " - Labor Contract.docx");
+        }
       };
     },
   },
