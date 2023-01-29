@@ -2,15 +2,15 @@
   "name": "create-boost-contract",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://dragoncog2.github.io/create-boost-contract/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "tauri:build": "vue-cli-service tauri:build",
     "tauri:serve": "vue-cli-service tauri:serve",
-    "homepage": "https://dragoncog2.github.io/create-boost-contract/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
