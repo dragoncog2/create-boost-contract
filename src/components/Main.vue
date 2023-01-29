@@ -8,7 +8,7 @@
               <h3
                 class="text-center text-lg font-medium leading-6 text-gray-900"
               >
-                Tạo hợp đồng
+                Tạo hợp đồng Boostcommerce
               </h3>
             </div>
           </div>
@@ -17,6 +17,23 @@
               <div class="overflow-hidden shadow sm:rounded-md">
                 <div class="bg-white px-4 py-5 sm:p-6">
                   <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12">
+                      <label
+                        for="contract_file"
+                        class="block text-sm font-medium text-gray-700"
+                        >Loại file hợp đồng</label
+                      >
+                      <select
+                        v-model="contractFile"
+                        name="contract_file"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      >
+                        <option value="probation">Hợp đồng thử việc</option>
+                        <option value="fulltime">Hợp đồng chính thức</option>
+                        <option value="appendix">Phụ lục hợp đồng</option>
+                        <option value="training">Thoả thuận tham gia đào tạo</option>
+                      </select>
+                    </div>
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
@@ -51,7 +68,7 @@
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Ngày kết thúc</label
@@ -59,6 +76,161 @@
                       <input
                         type="date"
                         name="end_date"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Mã số hợp đồng lao động</label
+                      >
+                      <input
+                        type="text"
+                        name="labor_contract_id"
+                        placeholder="Mã số hợp đồng lao động"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Ngày ký hợp đồng lao động</label
+                      >
+                      <input
+                        type="date"
+                        name="contract_date_sign"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chức danh cũ</label
+                      >
+                      <input
+                        type="text"
+                        name="old_title"
+                        placeholder="Chức danh cũ"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chức danh cũ (tiếng anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="old_title_eng"
+                        placeholder="Chức danh cũ (tiếng anh)"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chức danh mới</label
+                      >
+                      <input
+                        type="text"
+                        name="new_title"
+                        placeholder="Chức danh mới"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-3 lg:col-span-3">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chức danh mới (tiếng anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="new_title_eng"
+                        placeholder="Chức danh mới (tiếng anh)"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Lương cũ</label
+                      >
+                      <input
+                        type="text"
+                        name="old_salary"
+                        placeholder="Lương cũ"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'appendix'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Lương mới</label
+                      >
+                      <input
+                        type="text"
+                        name="new_salary"
+                        placeholder="Lương mới"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'training'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Tên khoá học</label
+                      >
+                      <input
+                        type="text"
+                        name="training_course_title"
+                        placeholder="Tên khoá học"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'training'" class="col-span-6 sm:col-span-6 lg:col-span-6">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Tên khoá học (tiếng anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="training_course_title_eng"
+                        placeholder="Tên khoá học (tiếng anh)"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'training'" class="col-span-6 sm:col-span-4 lg:col-span-4">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chứng chỉ</label
+                      >
+                      <input
+                        type="text"
+                        name="certificate"
+                        placeholder="Chứng chỉ"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'training'" class="col-span-6 sm:col-span-4 lg:col-span-4">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Chứng chỉ (tiếng anh)</label
+                      >
+                      <input
+                        type="text"
+                        name="certificate_eng"
+                        placeholder="Chứng chỉ (tiếng anh)"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+                    <div v-if="contractFile === 'training'" class="col-span-6 sm:col-span-4 lg:col-span-4">
+                      <label
+                        class="block text-sm font-medium text-gray-700"
+                        >Học phí</label
+                      >
+                      <input
+                        type="text"
+                        name="fees"
+                        placeholder="Học phí"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -141,10 +313,10 @@
                       />
                     </div>
 
-                    <div class="col-span-12 sm:col-span-5">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-12 sm:col-span-5">
                       <label
                         class="block text-sm font-medium text-gray-700"
-                        >Chúc vụ (tiếng việt)</label
+                        >Chức vụ (tiếng việt)</label
                       >
                       <input
                         type="text"
@@ -154,7 +326,7 @@
                       />
                     </div>
 
-                    <div class="col-span-12 sm:col-span-5">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-12 sm:col-span-5">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Chức vụ (Tiếng Anh)</label
@@ -167,7 +339,7 @@
                       />
                     </div>
 
-                    <div class="col-span-12 sm:col-span-2">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-12 sm:col-span-2">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Số giờ làm việc</label
@@ -180,7 +352,7 @@
                       />
                     </div>
 
-                    <div class="col-span-12 sm:col-span-6">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-12 sm:col-span-6">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Loại hợp đồng lao động</label
@@ -193,7 +365,7 @@
                       />
                     </div>
 
-                    <div class="col-span-12 sm:col-span-6">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-12 sm:col-span-6">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Loại hợp đồng lao động (Tiếng Anh)</label
@@ -205,7 +377,6 @@
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-
 
                     <div class="col-span-6 sm:col-span-6 lg:col-span-3">
                       <label class="block text-sm font-medium text-gray-700"
@@ -245,7 +416,7 @@
                       />
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div v-if="contractFile === 'probation' || contractFile === 'fulltime'" class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Lương</label
@@ -261,7 +432,7 @@
                     <div class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
-                        >Template HD Thử Việc</label
+                        >Template HD {{ contractFile }}</label
                       >
                       <input
                         type="file"
@@ -269,7 +440,7 @@
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
+                    <div v-if="contractFile === 'probation'" class="col-span-6 sm:col-span-3 lg:col-span-3">
                       <label
                         class="block text-sm font-medium text-gray-700"
                         >Template NDA</label
@@ -280,37 +451,20 @@
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div class="col-span-6 sm:col-span-3 lg:col-span-3">
-                      <label
-                        class="block text-sm font-medium text-gray-700"
-                        >Template HD chính thức</label
-                      >
-                      <input
-                        type="file"
-                        id="doc3"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
                   </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
-                    @click.stop.prevent="renderDoc('probation')"
+                    @click.stop.prevent="renderDoc(contractFile)"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    HĐ thử việc
+                    HĐ {{ contractFile }}
                   </button>
-                  <button
+                  <button v-if="contractFile === 'probation'"
                     @click.stop.prevent="renderDoc('nda')"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     NDA
-                  </button>
-                  <button
-                    @click.stop.prevent="renderDoc('fulltime')"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 ml-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    HD chính thức
                   </button>
                 </div>
               </div>
@@ -358,7 +512,18 @@ function getDataForm() {
   formData.location_dob_eng = removeAccents(formData.location_dob);
   formData.residential_address_eng = removeAccents(formData.residential_address);
   formData.id_number_at_eng = removeAccents(formData.id_number_at);
-  formData.salary = new Intl.NumberFormat().format(parseInt(formData.salary.replace(/,/, '').replace(/\./, '')));
+  if (formData.salary) {
+    formData.salary = new Intl.NumberFormat().format(parseInt(formData.salary.replace(/,/, '').replace(/\./, '')));
+  }
+
+  if (formData.old_salary) {
+    formData.old_salary = new Intl.NumberFormat().format(parseInt(formData.old_salary.replace(/,/, '').replace(/\./, '')));
+    formData.new_salary = new Intl.NumberFormat().format(parseInt(formData.new_salary.replace(/,/, '').replace(/\./, '')));
+  }
+
+  if (formData.fees) {
+    formData.fees = new Intl.NumberFormat().format(parseInt(formData.fees.replace(/,/, '').replace(/\./, '')));
+  }
 
   return formData;
 }
@@ -379,22 +544,18 @@ export default {
   name: "MainApp",
   data() {
     return {
-      count: 0,
-      id: 123
+      contractFile: "probation",
     }
   },
   methods: {
     renderDoc(contract_type) {
-      console.log(JSON.parse(JSON.stringify(this.$data)));
+      //console.log(JSON.parse(JSON.stringify(this.$data)));
       let dataForm = getDataForm();
-      console.log(dataForm);
+      //console.log(dataForm);
       let docs = null;
-      if (contract_type === 'probation') {
-        docs = document.getElementById("doc1");
-      } else if (contract_type === 'nda') {
+      docs = document.getElementById("doc1");
+      if (contract_type === 'nda') {
         docs = document.getElementById("doc2");
-      } else {
-        docs = document.getElementById("doc3");
       }
 
       const reader = new FileReader();
@@ -459,8 +620,12 @@ export default {
           saveAs(out, dataForm.full_name_eng + " - Probation Contract.docx");
         } else if (contract_type === 'nda') {
           saveAs(out, dataForm.full_name_eng + " - NDA.docx");
-        } else {
+        } else if (contract_type === 'fulltime') {
           saveAs(out, dataForm.full_name_eng + " - Labor Contract.docx");
+        } else if (contract_type === 'appendix') {
+          saveAs(out, "Appendix of Labor Contract - " + dataForm.full_name_eng + ".docx");
+        } else if (contract_type === 'training') {
+          saveAs(out, "Training Bond Agreement - " + dataForm.full_name_eng + ".docx");
         }
       };
     },
